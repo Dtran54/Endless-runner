@@ -36,16 +36,18 @@ class Menu extends Phaser.Scene {
     update(){
       if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
         game.settings = {
-            pineappleSpeed: 3,
-            carrotSpeed: 5,
+            pineappleSpeed: 5,
+            carrotSpeed: 7,
+            bananaSpeed: 9,
         }
         this.sound.play('music');
         this.scene.start('playScene');
     }
     if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
         game.settings = {
-            pineappleSpeed: 4,
-            carrotSpeed: 6,
+            pineappleSpeed: 6,
+            carrotSpeed: 9,
+            bannanaSpeed: 10,
         }
         this.sound.play('music');
         this.scene.start('playScene');
