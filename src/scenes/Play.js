@@ -4,12 +4,13 @@ class Play extends Phaser.Scene {
     }
     preload() {
         // load images/tile sprites
-        this.load.image('space', './assets/space.png');
-        this.load.image('ground', './assets/Ground.png');
-        this.load.image('rabbit','./assets/rabbit.png')
+        
+        this.load.image('space', './assets/space.png');this.load.image('ground', './assets/Ground.png');
+        this.load.image('rabbit','./assets/rabbit.png');
+        this.load.image('pineapple','./assets/pineapple.png');
+        this.load.image('carrot','./assets/carrot.png');
     }
     create(){
-        this.add.text(20, 20, "Endless Runner Play");
         this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0, 0);
         this.ground = this.add.tileSprite(0, game.config.height-60, game.config.width, 60 , 'ground').setOrigin(0, 0);
         this.rabbit = this.add.sprite(32, game.config.height-110, 'rabbit').setOrigin(0.5);
@@ -22,9 +23,21 @@ class Play extends Phaser.Scene {
             loop: true 
         });
         this.bgm.play();
+
+        //define keys
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    
+
+        //add pineapple,carrot
+        this.pineapple = new Pineapple(this, game.config.width + 60, 200,'pineapple', 0, 30).setOrigin(0,0);
+        this.carrot = new Carrot(this, game.config.width + 60, 200,'carrot', 0, 100).setOrigin(0,0);
+        
     }
     update() {
         this.space.tilePositionX += 4;
         this.ground.tilePositionX += 4;
+        this.pineapple.update();
+        this.carrot.update();
       }
 }
