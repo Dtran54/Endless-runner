@@ -3,7 +3,8 @@ class Carrot extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.points = pointValue;
-        this.moveSpeed = game.settings.carrotSpeed;
+        this.moveSpeed = settings.carrotSpeed;
+
     }
     update(){
         this.x -= this.moveSpeed;

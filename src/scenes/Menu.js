@@ -2,14 +2,20 @@ class Menu extends Phaser.Scene {
     constructor() {
       super("menuScene");
     }
+
     preload(){
       //load audio
       this.load.audio('music', './assets/bgm.wav');
       this.load.image('space', './assets/space.png');
     }
+
+
     create() {
+
+      this.add.text(20, 20, "Endless Runner Menu");
+      this.scene.start("playScene");
+
       this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0,0);
-      
       let menuConfig = {
         fontFamily: 'fantasy',
         fontSize: '30px',
@@ -51,6 +57,7 @@ class Menu extends Phaser.Scene {
         }
         this.sound.play('music');
         this.scene.start('playScene');
+      }
     }
   }
 }
