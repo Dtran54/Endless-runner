@@ -12,6 +12,8 @@ class Play extends Phaser.Scene {
         this.load.image('banana','./assets/banana.png');
     }
     create() {
+        this.add.text(20, 20, "Endless Runner Play");
+        this.space = this.add.tileSprite(0, 0, 640, 480, 'space').setOrigin(0, 0);
         this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0, 0);
         this.ground = this.add.tileSprite(0, game.config.height-60, game.config.width, 60 , 'ground').setOrigin(0, 0);
         this.rabbit = this.add.physics.sprite(settings.playerStartPosition, game.config.height-110, 'rabbit');
