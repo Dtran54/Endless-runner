@@ -3,7 +3,7 @@ class Pineapple extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.points = pointValue;
-        this.moveSpeed = settings.pineappleSpeed;
+        this.moveSpeed = game.settings.pineappleSpeed;
 
     }
     update(){

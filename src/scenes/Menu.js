@@ -12,9 +12,6 @@ class Menu extends Phaser.Scene {
 
     create() {
 
-      this.add.text(20, 20, "Endless Runner Menu");
-      this.scene.start("playScene");
-
       this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0,0);
       let menuConfig = {
         fontFamily: 'fantasy',
@@ -45,6 +42,7 @@ class Menu extends Phaser.Scene {
             pineappleSpeed: 5,
             carrotSpeed: 7,
             bananaSpeed: 9,
+            blueberrySpeed:6,
         }
         this.sound.play('music');
         this.scene.start('playScene');
@@ -54,10 +52,10 @@ class Menu extends Phaser.Scene {
             pineappleSpeed: 6,
             carrotSpeed: 9,
             bannanaSpeed: 10,
+            blueberrySpeed:7,
         }
         this.sound.play('music');
         this.scene.start('playScene');
       }
     }
-  }
 }
