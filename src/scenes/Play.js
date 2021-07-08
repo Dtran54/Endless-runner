@@ -12,8 +12,8 @@ class Play extends Phaser.Scene {
     }
     create() {
         this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0, 0);
-        this.ground = this.physics.add.tileSprite(0, game.config.height-60, game.config.width, 60 , 'ground').setOrigin(0, 0);
-        this.rabbit = this.add.sprite(32, game.config.height-110, 'rabbit').setOrigin(0.5);
+        this.ground = this.add.tileSprite(0, game.config.height-60, game.config.width, 60 , 'ground').setOrigin(0, 0);
+        this.rabbit = this.add.physics.sprite(settings.playerStartPosition, game.config.height-110, 'rabbit');
     
         // set up audio, play bgm
         this.bgm = this.sound.add('music', { 
