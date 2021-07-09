@@ -41,8 +41,13 @@ class Menu extends Phaser.Scene {
         game.settings = {
             pineappleSpeed: 5,
             carrotSpeed: 7,
-            bananaSpeed: 9,
+            bananaSpeed: 8,
             blueberrySpeed:6,
+            jumps: 3,
+            bananapoints: 10,
+            pineapplepoints: 5,
+            blueberrypoints: 8,
+            carrotpoints: 15
         }
         this.sound.play('music');
         this.scene.start('playScene');
@@ -51,8 +56,13 @@ class Menu extends Phaser.Scene {
         game.settings = {
             pineappleSpeed: 6,
             carrotSpeed: 9,
-            bannanaSpeed: 10,
+            bananaSpeed: 10,
             blueberrySpeed:7,
+            jumps: 3,
+            bananapoints: 10,
+            pineapplepoints: 5,
+            blueberrypoints: 8,
+            carrotpoints: 15
         }
         this.sound.play('music');
         this.scene.start('playScene');
