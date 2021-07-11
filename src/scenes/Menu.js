@@ -6,7 +6,7 @@ class Menu extends Phaser.Scene {
     preload(){
       //load audio
       this.load.audio('music', './assets/bgm.wav');
-      this.load.image('space', './assets/space.png');
+      this.load.image('menu', './assets/menu.png');
       this.load.audio('eat', './assets/eat.wav');
       this.load.audio('jump1', './assets/jump.wav');
     }
@@ -14,30 +14,10 @@ class Menu extends Phaser.Scene {
 
     create() {
 
-      this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0,0);
-      
-      let menuConfig = {
-        fontFamily: 'fantasy',
-        fontSize: '30px',
-        backgroundColor: '#DAF7A6',
-        color:'#FFC300',
-        align: 'right',
-        padding:{
-            top: 5, bottom: 5,
-        },
-        fixedWidth: 0
-      }
-        menuConfig.color = "#AD1399";
-        this.add.text(game.config.width/2, game.config.height/2 - 70, 'Endless Runner', menuConfig).setOrigin(0.5);
-        
-        menuConfig.color = "#B51C06FF";
-        this.add.text(game.config.width/2, game.config.height/2, 'Use UP arrow to jump', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = "#DAF7A6";
-        this.add.text(game.config.width/2, game.config.height/2 + 70,'Press <= of Novice or => Expert', menuConfig).setOrigin(0.5);
-        
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-      }
+      this.menu = this.add.tileSprite(0, 0, 840, 640, 'menu').setOrigin(0,0);
+      keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+      keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    }
   
     update(){
       if(Phaser.Input.Keyboard.JustDown(keyLEFT)){

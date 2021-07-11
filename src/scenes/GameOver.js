@@ -4,12 +4,12 @@ class GameOver extends Phaser.Scene {
     }
    
     create(){
-        this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0,0);
+        this.gameover = this.add.tileSprite(0, 0, 840, 640, 'gameover').setOrigin(0,0);
         
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     }
     update(){
-        this.space.tilePositionX += 0;
+        this.gameover.tilePositionX += 0;
         
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
             this.scene.start('menuScene');
