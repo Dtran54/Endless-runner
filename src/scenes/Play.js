@@ -13,6 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('banana','./assets/banana.png');
         this.load.image('blueberry','./assets/blueberry.png');
         this.load.image('gameover', './assets/gameover.png');
+        this.load.image() // sprite sheet here
 
     }
 
