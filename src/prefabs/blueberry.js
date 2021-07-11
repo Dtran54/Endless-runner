@@ -1,8 +1,8 @@
 class Blueberry extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y, texture, frame, pointValue){
+    constructor(scene, x, y, texture, frame, blueberrypoints){
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
-        this.points = pointValue;
+        this.points = blueberrypoints;
         this.moveSpeed = game.settings.blueberrySpeed;
 
     }

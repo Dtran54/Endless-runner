@@ -10,6 +10,7 @@ class GameOver extends Phaser.Scene {
     }
     update(){
         this.gameover.tilePositionX += 0;
+        this.scoreBoard = this.add.text(16, 16, 'Score:  ' + x, style);
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
             this.scene.start('menuScene');
         }

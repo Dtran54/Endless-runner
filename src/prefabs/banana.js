@@ -1,8 +1,8 @@
 class Banana extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y, texture, frame, pointValue){
+    constructor(scene, x, y, texture, frame, bananapoints){
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
-        this.points = pointValue;
+        this.points = bananapoints;
         this.moveSpeed = game.settings.bananaSpeed;
 
     }
