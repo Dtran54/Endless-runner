@@ -55,6 +55,7 @@ class Play extends Phaser.Scene {
     }
     
     update() {
+        //this.rabbit.body.setVelocityY(-400);
         this.space.tilePositionX += 2;
         
         if(!this.gameOver){
@@ -73,9 +74,12 @@ class Play extends Phaser.Scene {
         }
         //can't jump too high
         if(this.rabbit.y < -100 ){
+            this.bgm.stop()
             this.gameOver = true;
+            
         }
         if(this.gameOver){
+            this.bgm.stop()
             this.scene.start("gameOverScene");
         }
         //check collision
