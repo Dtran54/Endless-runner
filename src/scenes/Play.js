@@ -14,6 +14,10 @@ class Play extends Phaser.Scene {
         this.load.image('banana','./assets/banana.png');
         this.load.image('blueberry','./assets/blueberry.png');
         this.load.image('gameover', './assets/gameover.png');
+        // make sure to adjust the spritesheet names and frame data
+        this.load.spritesheet('heart', './assets/heart.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('jp', './assets/jp.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('boom', './assets/boom.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
 
     }
 
@@ -52,6 +56,25 @@ class Play extends Phaser.Scene {
         this.carrot = new Carrot(this, game.config.width + 60, 400,'carrot', 0, 100).setOrigin(0,0);
         this.banana = new Banana(this, game.config.width + 60, 510,'banana', 0, 100).setOrigin(0,0);
         this.blueberry = new Blueberry(this, game.config.width + 60, 50,'blueberry', 0, 30).setOrigin(0,0);
+
+        // adjust the frame data
+        this.anims.create({
+            key: 'boomer',
+            frames: this.anims.generateFrameNumbers('boom', { start: 0, end: 9, first: 0}),
+            frameRate: 30
+        });
+
+        this.anims.create({
+            key: 'pulse',
+            frames: this.anims.generateFrameNumbers('heart', { start: 0, end: 9, first: 0}),
+            frameRate: 30
+        });
+
+        this.anims.create({
+            key: 'bunny',
+            frames: this.anims.generateFrameNumbers('jp', { start: 0, end: 9, first: 0}),
+            frameRate: 30
+        });
     }
     
     update() {
@@ -107,6 +130,36 @@ class Play extends Phaser.Scene {
                 return false;
             }
     }
+    //adjust as needed
+    bunnyAnim(rabbit) {
+        rabbit.alpha = 0;
+        let hop = this.add.sprite(rabbit.x, rabbit.y, 'jp').setOrigin(0,0);
+        hop.anims.play('bunny')
+        hop.on('animationcomplete', () => {
+            hop.destroy()
+        });
+    }
+    // unsure what heartAnim takes, and if it's based off the rabbit
+    heartAnim(rabbit) {
+        rabbit.alpha = 0;
+        let hop = this.add.sprite(rabbit.x, rabbit.y, 'heart').setOrigin(0,0);
+        hop.anims.play('pulse')
+        hop.on('animationcomplete', () => {
+            hop.destroy()
+        });
+    }
+        
+    boomAnim(rabbit) {
+        rabbit.alpha = 0;
+        let hop = this.add.sprite(rabbit.x, rabbit.y, 'boom').setOrigin(0,0);
+        hop.anims.play('boomer')
+        hop.on('animationcomplete', () => {
+            hop.destroy()
+        });
+    }
+
+
+    // unsure what the anims are used for 
     eatPineapple(pineapple){
         pineapple.alpha = 0; 
         this.sound.play('eat');
