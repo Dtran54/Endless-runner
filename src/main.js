@@ -14,7 +14,11 @@ Art wise, the game looks quite good. For such a short time, the team
 came up with a memorable and visually appealing logo with the outline of a
 rabbit on the moon. The overall art form is quite friendly and cute.
 Unlike most endless runners, we chose an animal in a highly unusual 
-setting, eating typical foods for that setting. */
+setting, eating typical foods for that setting. 
+
+The design idea comes from Chinese traditional myth. There are rabbits living on the moon. 
+They eat delicious food and play everyday. They can jump higher than the rabbits on the earth.
+*/
 let config = {
     type: Phaser.CANVAS,
     width: 840,

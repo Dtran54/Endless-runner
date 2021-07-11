@@ -13,8 +13,8 @@ class Menu extends Phaser.Scene {
 
 
     create() {
-
       this.menu = this.add.tileSprite(0, 0, 840, 640, 'menu').setOrigin(0,0);
+      this.menu = this.add.text(16, 16, 'Hint: Rabbit can only eat carrots and pineapples!', style).setOrigin(0,0);
       keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
       keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
