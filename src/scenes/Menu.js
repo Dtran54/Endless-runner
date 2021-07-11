@@ -15,6 +15,7 @@ class Menu extends Phaser.Scene {
     create() {
 
       this.space = this.add.tileSprite(0, 0, 840, 640, 'space').setOrigin(0,0);
+      
       let menuConfig = {
         fontFamily: 'fantasy',
         fontSize: '30px',
@@ -51,7 +52,7 @@ class Menu extends Phaser.Scene {
             blueberrypoints: 8,
             carrotpoints: 15
         }
-        this.sound.play('music');
+        
         this.scene.start('playScene');
     }
     if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
@@ -66,7 +67,7 @@ class Menu extends Phaser.Scene {
             blueberrypoints: 8,
             carrotpoints: 15
         }
-        this.sound.play('music');
+        
         this.scene.start('playScene');
       }
     }
