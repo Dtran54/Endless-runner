@@ -1,6 +1,7 @@
 class Play extends Phaser.Scene {
     constructor(){
         super("playScene");
+        
     }
     preload() {
         // load images/tile sprites
@@ -18,7 +19,8 @@ class Play extends Phaser.Scene {
 
     create() {
         //add score
-        
+        this.score = 0;
+        this.scoreBoard = this.add.text(16, 16, 'Score:  ' + this.score, style);
         //setting up bgm
         this.bgm = this.sound.add('music', { 
             mute: false,
@@ -54,7 +56,7 @@ class Play extends Phaser.Scene {
     
     update() {
         this.space.tilePositionX += 2;
-
+        
         if(!this.gameOver){
         this.pineapple.update();
         this.carrot.update();
@@ -106,6 +108,10 @@ class Play extends Phaser.Scene {
         this.sound.play('eat');
         pineapple.reset();
         pineapple.alpha = 1;
+        this.scoreBoard.destroy();
+        this.score+= pineapple.points;
+        this.scoreBoard = this.add.text(16, 16, 'Score:  ' + this.score, style);
+        x = this.score;
         //add eat animation
         //add score and repaint score display
         
@@ -128,6 +134,10 @@ class Play extends Phaser.Scene {
         carrot.alpha = 1;
         //add eat animation
         //add score and repaint score display
+        this.scoreBoard.destroy();
+        this.score+= carrot.points;
+        this.scoreBoard = this.add.text(16, 16, 'Score:  ' + this.score, style);
+        x = this.score;
         
     }
     //rabbit eats blueberry

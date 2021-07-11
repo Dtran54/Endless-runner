@@ -10,3 +10,5 @@ let config = {
   
 let game = new Phaser.Game(config);
 let keyLEFT, keyRIGHT,keyUP;
+let style = { font: "bold 32px Arial", fill: "#fff" };
+let x;
