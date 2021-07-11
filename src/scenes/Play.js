@@ -5,7 +5,6 @@ class Play extends Phaser.Scene {
     }
     preload() {
         // load images/tile sprites
-
         this.load.image('space', './assets/space.png');
         this.load.image('ground', './assets/Ground.png');
         this.load.image('rabbit','./assets/rabbit.png');
@@ -15,16 +14,15 @@ class Play extends Phaser.Scene {
         this.load.image('blueberry','./assets/blueberry.png');
         this.load.image('gameover', './assets/gameover.png');
         // make sure to adjust the spritesheet names and frame data
-        this.load.spritesheet('heart', './assets/heart.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-        this.load.spritesheet('jp', './assets/jp.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-        this.load.spritesheet('boom', './assets/boom.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
-
+        this.load.spritesheet('heart', './assets/heart.png', {frameWidth: 45, frameHeight: 45, startFrame: 0, endFrame: 8});
+        this.load.spritesheet('JP', './assets/jump.png', {frameWidth: 101, frameHeight: 120, startFrame: 0, endFrame: 9});
     }
 
     create() {
         //add score
         this.score = 0;
         this.scoreBoard = this.add.text(16, 16, 'Score:  ' + this.score, style);
+        
         //setting up bgm
         this.bgm = this.sound.add('music', { 
             mute: false,
@@ -40,6 +38,7 @@ class Play extends Phaser.Scene {
         this.ground.displayWidth = game.config.width*1.1;
         this.ground.setImmovable();
         this.rabbit = this.physics.add.sprite(100, game.config.height-110, 'rabbit').setOrigin(0.5);
+        this.rabbit.alpha = 0;
         this.rabbit.setGravityY(900);
         this.gameOver = false;
 
@@ -59,28 +58,27 @@ class Play extends Phaser.Scene {
 
         // adjust the frame data
         this.anims.create({
-            key: 'boomer',
-            frames: this.anims.generateFrameNumbers('boom', { start: 0, end: 9, first: 0}),
-            frameRate: 30
-        });
-
-        this.anims.create({
             key: 'pulse',
-            frames: this.anims.generateFrameNumbers('heart', { start: 0, end: 9, first: 0}),
+            frames: this.anims.generateFrameNumbers('heart', { start: 0, end: 8, first: 0}),
             frameRate: 30
         });
 
         this.anims.create({
             key: 'bunny',
-            frames: this.anims.generateFrameNumbers('jp', { start: 0, end: 9, first: 0}),
+            frames: this.anims.generateFrameNumbers('JP', { start: 0, end: 9, first: 0}),
             frameRate: 30
         });
     }
     
     update() {
-        //this.rabbit.body.setVelocityY(-400);
         this.space.tilePositionX += 2;
         
+        let hop = this.add.sprite(this.rabbit.x, this.rabbit.y, 'JP').setOrigin(0,0);
+        hop.anims.play('bunny')
+        hop.on('animationcomplete', () => {
+            hop.destroy()
+        });
+
         if(!this.gameOver){
         this.pineapple.update();
         this.carrot.update();
@@ -131,47 +129,32 @@ class Play extends Phaser.Scene {
             }
     }
     //adjust as needed
-    bunnyAnim(rabbit) {
-        rabbit.alpha = 0;
-        let hop = this.add.sprite(rabbit.x, rabbit.y, 'jp').setOrigin(0,0);
-        hop.anims.play('bunny')
-        hop.on('animationcomplete', () => {
-            hop.destroy()
-        });
-    }
-    // unsure what heartAnim takes, and if it's based off the rabbit
-    heartAnim(rabbit) {
-        rabbit.alpha = 0;
-        let hop = this.add.sprite(rabbit.x, rabbit.y, 'heart').setOrigin(0,0);
-        hop.anims.play('pulse')
-        hop.on('animationcomplete', () => {
-            hop.destroy()
-        });
-    }
-        
-    boomAnim(rabbit) {
-        rabbit.alpha = 0;
-        let hop = this.add.sprite(rabbit.x, rabbit.y, 'boom').setOrigin(0,0);
-        hop.anims.play('boomer')
-        hop.on('animationcomplete', () => {
-            hop.destroy()
-        });
-    }
-
-
-    // unsure what the anims are used for 
+    //bunnyAnim(rabbit) {
+     //   rabbit.alpha = 0;
+       // let hop = this.add.sprite(this.rabbit.x, this.rabbit.y, 'JP').setOrigin(0,0);
+        //hop.anims.play('bunny')
+       // hop.on('animationcomplete', () => {
+       //     hop.destroy()
+       // });
+    //}
     eatPineapple(pineapple){
         pineapple.alpha = 0; 
+        
+        //add eat animation
+        let eating = this.add.sprite(pineapple.x, pineapple.y, 'heart').setOrigin(0,0);
+        eating.anims.play('pulse');
+        eating.on('animationcomplete', () => {
+            eating.destroy();
+        });
         this.sound.play('eat');
         pineapple.reset();
         pineapple.alpha = 1;
+
+        //add score and repaint score display
         this.scoreBoard.destroy();
         this.score+= pineapple.points;
         this.scoreBoard = this.add.text(16, 16, 'Score:  ' + this.score, style);
         x = this.score;
-        //add eat animation
-        //add score and repaint score display
-        
     }
     //rabbit eats carrots
     checkCollision(rabbit, carrot){
@@ -186,16 +169,20 @@ class Play extends Phaser.Scene {
     }
     eatCarrot(carrot){
         carrot.alpha = 0; 
+        //add eat animation
+        let eating = this.add.sprite(carrot.x, carrot.y, 'heart').setOrigin(0,0);
+        eating.anims.play('pulse');
+        eating.on('animationcomplete', () => {
+            eating.destroy();
+        });
         this.sound.play('eat');
         carrot.reset();
         carrot.alpha = 1;
-        //add eat animation
         //add score and repaint score display
         this.scoreBoard.destroy();
         this.score+= carrot.points;
         this.scoreBoard = this.add.text(16, 16, 'Score:  ' + this.score, style);
         x = this.score;
-        
     }
     //rabbit eats blueberry
     checkCollision(rabbit, blueberry){
@@ -234,8 +221,5 @@ class Play extends Phaser.Scene {
         banana.alpha = 1;
         this.gameOver = true;
         
-    }
-    //game over scene will print the total score
-    //game over scene: press "enter" to return to menu scene
-      
+    }    
 }
