@@ -38,7 +38,6 @@ class Play extends Phaser.Scene {
         this.ground.displayWidth = game.config.width*1.1;
         this.ground.setImmovable();
         this.rabbit = this.physics.add.sprite(100, game.config.height-110, 'rabbit').setOrigin(0.5);
-        this.rabbit.alpha = 0;
         this.rabbit.setGravityY(900);
         this.gameOver = false;
 
@@ -73,11 +72,6 @@ class Play extends Phaser.Scene {
     update() {
         this.space.tilePositionX += 2;
         
-        let hop = this.add.sprite(this.rabbit.x, this.rabbit.y, 'JP').setOrigin(0,0);
-        hop.anims.play('bunny')
-        hop.on('animationcomplete', () => {
-            hop.destroy()
-        });
 
         if(!this.gameOver){
         this.pineapple.update();
@@ -91,6 +85,11 @@ class Play extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 this.rabbit.body.setVelocityY(-500);
                 this.sound.play('jump1');
+                /*let hop = this.add.sprite(this.rabbit.x, this.rabbit.y, 'JP').setOrigin(0,0);
+                hop.anims.play('bunny')
+                hop.on('animationcomplete', () => {
+                    hop.destroy()
+                });*/
             
         }
         //can't jump too high
@@ -141,7 +140,7 @@ class Play extends Phaser.Scene {
         pineapple.alpha = 0; 
         
         //add eat animation
-        let eating = this.add.sprite(pineapple.x, pineapple.y, 'heart').setOrigin(0,0);
+        /*let eating = this.add.sprite(pineapple.x, pineapple.y, 'heart').setOrigin(0,0);
         eating.anims.play('pulse');
         eating.on('animationcomplete', () => {
             eating.destroy();
@@ -149,7 +148,7 @@ class Play extends Phaser.Scene {
         this.sound.play('eat');
         pineapple.reset();
         pineapple.alpha = 1;
-
+        */
         //add score and repaint score display
         this.scoreBoard.destroy();
         this.score+= pineapple.points;
@@ -170,7 +169,7 @@ class Play extends Phaser.Scene {
     eatCarrot(carrot){
         carrot.alpha = 0; 
         //add eat animation
-        let eating = this.add.sprite(carrot.x, carrot.y, 'heart').setOrigin(0,0);
+       /* let eating = this.add.sprite(carrot.x, carrot.y, 'heart').setOrigin(0,0);
         eating.anims.play('pulse');
         eating.on('animationcomplete', () => {
             eating.destroy();
@@ -178,6 +177,7 @@ class Play extends Phaser.Scene {
         this.sound.play('eat');
         carrot.reset();
         carrot.alpha = 1;
+        */
         //add score and repaint score display
         this.scoreBoard.destroy();
         this.score+= carrot.points;
@@ -215,11 +215,12 @@ class Play extends Phaser.Scene {
             }
     }
     eatBanana(banana){
+        /*
         banana.alpha = 0; 
         this.sound.play('eat');
         banana.reset();
         banana.alpha = 1;
-        this.gameOver = true;
+        this.gameOver = true;*/
         
     }    
 }
